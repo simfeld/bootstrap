@@ -89,6 +89,7 @@
   function clearMenus(e) {
     if (e && e.which === 3) return
     $(backdrop).remove()
+    $(toggle).parent().parent().removeClass('nav-hover')//new
     $(toggle).each(function () {
       var $this         = $(this)
       var $parent       = getParent($this)
@@ -97,6 +98,7 @@
       if (!$parent.hasClass('open')) return
 
       $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+      //$parent.trigger(e = $.Event('hideme', relatedTarget))
 
       if (e.isDefaultPrevented()) return
 

@@ -624,7 +624,8 @@ if (typeof jQuery === 'undefined') {
   Collapse.prototype.hide = function () {
     if (this.transitioning || !this.$element.hasClass('in')) return
 
-    var startEvent = $.Event('hide.bs.collapse')
+    //var startEvent = $.Event('hide.bs.collapse')
+    var startEvent = $.Event('hideme')
     this.$element.trigger(startEvent)
     if (startEvent.isDefaultPrevented()) return
 
@@ -829,6 +830,7 @@ if (typeof jQuery === 'undefined') {
   function clearMenus(e) {
     if (e && e.which === 3) return
     $(backdrop).remove()
+    $(toggle).parent().parent().removeClass('nav-hover')//new
     $(toggle).each(function () {
       var $this         = $(this)
       var $parent       = getParent($this)
@@ -837,6 +839,7 @@ if (typeof jQuery === 'undefined') {
       if (!$parent.hasClass('open')) return
 
       $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+      //$parent.trigger(e = $.Event('hideme', relatedTarget))
 
       if (e.isDefaultPrevented()) return
 
@@ -1264,7 +1267,8 @@ if (typeof jQuery === 'undefined') {
     trigger: 'hover focus',
     title: '',
     delay: 0,
-    html: false,
+    //html: false,
+    html: true,
     container: false,
     viewport: {
       selector: 'body',
@@ -1520,7 +1524,8 @@ if (typeof jQuery === 'undefined') {
   Tooltip.prototype.hide = function (callback) {
     var that = this
     var $tip = this.tip()
-    var e    = $.Event('hide.bs.' + this.type)
+    //var e    = $.Event('hide.bs.' + this.type)
+    var e    = $.Event('hideme')
 
     function complete() {
       if (that.hoverState != 'in') $tip.detach()
@@ -2028,17 +2033,20 @@ if (typeof jQuery === 'undefined') {
     if ($this.parent('li').hasClass('active')) return
 
     var $previous = $ul.find('.active:last a')
-    var hideEvent = $.Event('hide.bs.tab', {
+    //var hideEvent = $.Event('hide.bs.tab', {
+    /*var hideEvent = $.Event('hideme', {
       relatedTarget: $this[0]
-    })
-    var showEvent = $.Event('show.bs.tab', {
+    })*/
+    //var showEvent = $.Event('show.bs.tab', {
+    var showEvent = $.Event('show', {
       relatedTarget: $previous[0]
     })
 
-    $previous.trigger(hideEvent)
+    //$previous.trigger(hideEvent)
     $this.trigger(showEvent)
 
-    if (showEvent.isDefaultPrevented() || hideEvent.isDefaultPrevented()) return
+    //if (showEvent.isDefaultPrevented() || hideEvent.isDefaultPrevented()) return
+    if (showEvent.isDefaultPrevented()) return
 
     var $target = $(selector)
 

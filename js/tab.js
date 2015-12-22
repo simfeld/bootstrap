@@ -34,17 +34,20 @@
     if ($this.parent('li').hasClass('active')) return
 
     var $previous = $ul.find('.active:last a')
-    var hideEvent = $.Event('hide.bs.tab', {
+    //var hideEvent = $.Event('hide.bs.tab', {
+    /*var hideEvent = $.Event('hideme', {
       relatedTarget: $this[0]
-    })
-    var showEvent = $.Event('show.bs.tab', {
+    })*/
+    //var showEvent = $.Event('show.bs.tab', {
+    var showEvent = $.Event('show', {
       relatedTarget: $previous[0]
     })
 
-    $previous.trigger(hideEvent)
+    //$previous.trigger(hideEvent)
     $this.trigger(showEvent)
 
-    if (showEvent.isDefaultPrevented() || hideEvent.isDefaultPrevented()) return
+    //if (showEvent.isDefaultPrevented() || hideEvent.isDefaultPrevented()) return
+    if (showEvent.isDefaultPrevented()) return
 
     var $target = $(selector)
 

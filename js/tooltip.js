@@ -37,7 +37,8 @@
     trigger: 'hover focus',
     title: '',
     delay: 0,
-    html: false,
+    //html: false,
+    html: true,
     container: false,
     viewport: {
       selector: 'body',
@@ -293,7 +294,8 @@
   Tooltip.prototype.hide = function (callback) {
     var that = this
     var $tip = this.tip()
-    var e    = $.Event('hide.bs.' + this.type)
+    //var e    = $.Event('hide.bs.' + this.type)
+    var e    = $.Event('hideme')
 
     function complete() {
       if (that.hoverState != 'in') $tip.detach()
